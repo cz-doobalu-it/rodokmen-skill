@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Matriky AHMP (Praha) – stáhne snímek slepením dlaždic Zoomify.
 # Použití: ahmp_scan.py XID SCAN OUT.jpg [down] [x0,y0,x1,y1]   (down=0 plné rozlišení, 1 = poloviční…; oblast ve zlomcích)
-# XID svazku vypíše ahmp_search.sh. Trvalý odkaz: https://katalog.ahmp.cz/pragapublica/permalink?xid=<XID>&scan=<N>
+# XID svazku vypíše ahmp_search.ps1. Trvalý odkaz: https://katalog.ahmp.cz/pragapublica/permalink?xid=<XID>&scan=<N>
 import glob,shutil,sys,re,math,subprocess,urllib.request,os,tempfile
 for _s in (sys.stdout, sys.stderr):   # UTF-8 výstup i na Windows bez -X utf8 (cp1250 neumí třeba „→“)
     if hasattr(_s, "reconfigure"):

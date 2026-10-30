@@ -63,13 +63,9 @@ def main():
     tools = os.path.join(dst, "tools")
     os.makedirs(tools, exist_ok=True)
     for f in os.listdir(os.path.join(SKILL, "tools")):
-        if f.endswith((".py", ".sh")) and f != "novy_projekt.py":
+        if f.endswith((".py", ".ps1")) and f != "novy_projekt.py":
             copy(os.path.join(SKILL, "tools", f), os.path.join(tools, f))   # nástroje vždy aktualizovat
-            if f.endswith(".sh"):   # skill naklonovaný na Windows (core.autocrlf) má CRLF – Git Bash by skript nespustil
-                p = os.path.join(tools, f)
-                data = open(p, "rb").read()
-                if b"\r\n" in data:
-                    open(p, "wb").write(data.replace(b"\r\n", b"\n"))
+    copy_tree(os.path.join(SKILL, "tools", "imagemagick"), os.path.join(tools, "imagemagick"))
     for d in ("vyrezy", "zdroje", "dokumenty", "pracovni"):
         os.makedirs(os.path.join(dst, d), exist_ok=True)
     for name in ("AGENTS.md", ".gitignore", ".gitattributes", "poznamky_pro_skill.md"):

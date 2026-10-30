@@ -47,7 +47,7 @@ s přepisem a překladem, „Co hledáme“ a deník hledání. **[Podívejte se
 ## Co budete potřebovat
 - **Codex** (aplikace nebo příkazová řádka) a účet OpenAI s přístupem ke Codexu. Rodokmen je dlouhá práce –
   počítejte s několika večery a s vyšší spotřebou dostupných limitů. Po dokončení vám web i data zůstanou.
-- **Počítač s macOS nebo Windows** (obojí vyzkoušeno; Windows 11 s Pythonem z python.org a Git Bashem).
+- **Počítač s macOS nebo Windows** (obojí vyzkoušeno; Windows 11 s PowerShellem).
   Linux by měl fungovat, ale vyzkoušený není.
 - Programy **Python 3, Node.js a git**. Na Windows může skill použít Python přibalený k Codexu; portable ImageMagick
   je už součástí složky `tools/`. Codex zkontroluje, co skutečně chybí, a případně pomůže s instalací.

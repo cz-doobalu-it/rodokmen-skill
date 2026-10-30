@@ -128,14 +128,14 @@ Mladší knihy jsou na matričním úřadě obce s rozšířenou působností / 
   je výstup do roury v cp1250: čeština se rozbije a skripty spadnou na „≈“ a „→“ (nástroje skillu si výstup přepnou
   do UTF-8 samy, vlastní jednorázové skripty ne – `-X utf8` proto používej vždy). Totéž platí při
   přesměrování do souboru (soubor z `… --osoby > x.py` by jinak vznikl v cp1250; ve Windows PowerShellu 5.1 `>` dokonce
-  zapisuje UTF-16 – přesměrovávej v Git Bash). Proměnná `PYTHONUTF8` s `-I` nefunguje.
+  zapisuje UTF-16 – výstup proto zapisuj explicitně jako UTF-8 bez BOM). Proměnná `PYTHONUTF8` s `-I` nefunguje.
 - ImageMagick je `magick`, nikdy `convert` (`convert` je ve Windows systémový nástroj na převod disku z FAT na NTFS).
   Na Windows používej přibalený `tools/imagemagick/magick.exe`; nástroje ho najdou automaticky bez instalace a PATH.
   Písmo pro `-annotate`: `-font C:/Windows/Fonts/arial.ttf`.
 - Limit délky příkazové řádky je 32 767 znaků – stovky souborů (dlaždic) v jednom příkazu `magick` neprojdou
   (WinError 206); skládej po řádcích.
-- Skripty `.sh` přes Git Bash (`bash tools/…`). Markdown a JSON nikdy neupravuj `sed -i` (escapy v Git Bash rozbijí
-  soubor) – data zapisuj podle pravidla „Zápis do dat“ v SKILL.md.
+- Skripty `.ps1` spouštěj přes PowerShell (`powershell -ExecutionPolicy Bypass -File tools\…`). Markdown a JSON
+  neupravuj hromadným nahrazováním – data zapisuj podle pravidla „Zápis do dat“ v SKILL.md.
 - Windows nerozlišuje velikost písmen v názvech (`o_29.jpg` = `O_29.jpg`) – náhled a plné rozlišení odliš předponou
   (`nahled_`, `plne_`), jinak se přepíšou.
 - Datové soubory zapisuj v UTF-8 **bez BOM** (Windows PowerShell 5.1 s `-Encoding UTF8` přidá BOM a `osoby.py` pak nejde načíst).

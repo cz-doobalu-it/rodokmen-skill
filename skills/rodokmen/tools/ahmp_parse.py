@@ -1,4 +1,4 @@
-"""Pomocník pro ahmp_search.sh: z HTML stránky výsledků katalogu AHMP vypíše svazky (popis | farnost | XID, počet snímků)."""
+"""Pomocník pro ahmp_search.ps1: z HTML stránky výsledků katalogu AHMP vypíše svazky (popis | farnost | XID, počet snímků)."""
 import re,sys,html
 for _s in (sys.stdout, sys.stderr):   # UTF-8 výstup i na Windows bez -X utf8 (cp1250 neumí třeba „→“)
     if hasattr(_s, "reconfigure"):
