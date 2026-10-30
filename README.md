@@ -51,7 +51,11 @@ s přepisem a překladem, „Co hledáme“ a deník hledání. **[Podívejte se
   Linux by měl fungovat, ale vyzkoušený není.
 - Programy **Python 3, Node.js a git**. Na Windows může skill použít Python přibalený k Codexu; portable ImageMagick
   je už součástí složky `tools/`. Codex zkontroluje, co skutečně chybí, a případně pomůže s instalací.
+- Volitelně **Visual Studio Code** pro pohodlnou práci se složkou projektu a prohlížení souborů. Otevřete v něm
+  složku rodokmenu; Codex pak můžete používat přímo v tomto projektu.
 - Volitelně účet na [Netlify](https://www.netlify.com) (zdarma), pokud chcete web zveřejnit pro rodinu.
+
+![Náhled rodinného webu](nahled.png)
 
 ## S jakými modely to vzniklo
 AI se vyvíjí rychle a za pár měsíců může skill dávat lepší, nebo jen jiné výsledky. Proto je tu uvedeno, s čím byl
