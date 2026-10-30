@@ -1,10 +1,10 @@
-# Rodokmen – skill pro Claude Code
+# Rodokmen – skill pro Codex
 
 ![Rodokmen z matrik a rodinný web – vějíř předků, mapa a zajímavosti](docs/banner.jpg)
 
-Claude vás provede tvorbou rodokmenu **od rodinných vzpomínek přes digitalizované matriky až k hezkému rodinnému webu**
+Codex vás provede tvorbou rodokmenu **od rodinných vzpomínek přes digitalizované matriky až k hezkému rodinnému webu**
 s vějířem předků, mapou, příběhem rodu a výřezy původních zápisů s přepisem a překladem.
-Je určený pro lidi, kteří genealogii nikdy nedělali a neprogramují – technickou práci dělá Claude, vy dodáváte
+Je určený pro lidi, kteří genealogii nikdy nedělali a neprogramují – technickou práci dělá Codex, vy dodáváte
 znalost rodiny a rozhodujete.
 
 Vznikl při skutečném hledání předků jedné rodiny.
@@ -45,22 +45,20 @@ mapu, kde předci žili, osm rodů a vějíř předků. Další stránky: rodokm
 s přepisem a překladem, „Co hledáme“ a deník hledání. **[Podívejte se na celou úvodní stránku ukázky →](docs/ukazka-web.png)**
 
 ## Co budete potřebovat
-- **Claude Code** (aplikace pro Mac/Windows nebo příkazová řádka) a placené předplatné Claude. Rodokmen je
-  dlouhá práce – počítejte s několika večery a s tím, že spotřebuje dost kreditů. Nejlevnější tarif **Pro bude
-  nejspíš málo** (stačí na vyzkoušení), na celý rodokmen počítejte aspoň s nejnižším tarifem **Max**.
-  Po dokončení můžete předplatné zase snížit nebo zrušit, web i data vám zůstanou.
+- **Codex** (aplikace nebo příkazová řádka) a účet OpenAI s přístupem ke Codexu. Rodokmen je dlouhá práce –
+  počítejte s několika večery a s vyšší spotřebou dostupných limitů. Po dokončení vám web i data zůstanou.
 - **Počítač s macOS nebo Windows** (obojí vyzkoušeno; Windows 11 s Pythonem z python.org a Git Bashem).
   Linux by měl fungovat, ale vyzkoušený není.
-- Programy **Python 3, Node.js, ImageMagick a git**. Nemusíte je instalovat předem – Claude zkontroluje, co chybí,
-  a pomůže s instalací (na Macu přes [Homebrew](https://brew.sh), na Windows přes winget).
+- Programy **Python 3, Node.js a git**. Na Windows může skill použít Python přibalený k Codexu; portable ImageMagick
+  je už součástí složky `tools/`. Codex zkontroluje, co skutečně chybí, a případně pomůže s instalací.
 - Volitelně účet na [Netlify](https://www.netlify.com) (zdarma), pokud chcete web zveřejnit pro rodinu.
 
 ## S jakými modely to vzniklo
 AI se vyvíjí rychle a za pár měsíců může skill dávat lepší, nebo jen jiné výsledky. Proto je tu uvedeno, s čím byl
 vyzkoušený.
 
-- **Stav k říjnu 2026 (verze 0.5.0):** Claude Code s hlavním modelem **Claude Opus 5.5**. Pomocníci, kteří hledají
-  a čtou matriky jako první, běží na **Claude Sonnet 5.5**. Každý jejich nález pak hlavní model ověřuje na snímku.
+- **Stav k říjnu 2026 (verze 0.5.0):** pokyny jsou upravené pro Codex. Konkrétní dostupné modely a limity závisejí
+  na používané verzi Codexu a účtu OpenAI. Pro čtení starého písma používejte nejschopnější dostupný model.
 - Vyzkoušeno na několika skutečných rodokmenech (největší má 243 předků v 11 generacích a 192 matričních zápisů).
   Výsledek se porovnával s větví, kterou jsme léta dělali ručně.
 
@@ -68,39 +66,30 @@ S jiným nebo slabším modelem počítejte s víc chybami ve čtení starého p
 
 ## Instalace
 
-### Varianta A – jako plugin (doporučeno)
-V Claude Code napište:
-```
-/plugin marketplace add sarsonj/rodokmen-skill
-/plugin install rodokmen@rodokmen-skill
-```
-Pak Claude Code restartujte (do běžící relace se nový plugin nenačte).
-Aktualizace později: `/plugin marketplace update rodokmen-skill`. Rozpracovaný projekt pak Claude při další práci
-sám nabídne aktualizovat na novou verzi (vaše data zůstanou, změněné soubory webu zazálohuje do `pracovni/`).
-
-### Varianta B – ručně
+### Ruční instalace
 Stáhněte repozitář (zelené tlačítko **Code → Download ZIP** na GitHubu, nebo `git clone`) a zkopírujte složku
-`skills/rodokmen` do `~/.claude/skills/` (na Windows `C:\Users\<jméno>\.claude\skills\`). Výsledek:
-`~/.claude/skills/rodokmen/SKILL.md`.
+`skills/rodokmen` do `~/.codex/skills/` (na Windows `C:\Users\<jméno>\.codex\skills\`). Výsledek:
+`~/.codex/skills/rodokmen/SKILL.md`.
 
-Pak Claude Code restartujte.
+Pak Codex restartujte nebo otevřete novou relaci. Při aktualizaci stáhněte novou verzi repozitáře a složku skillu
+zkopírujte znovu; vlastní projekt rodokmenu tím nepřepíšete.
 
 ## První spuštění
-1. Spusťte Claude Code (klidně v domovské složce) a napište třeba:
+1. Spusťte Codex (klidně v domovské složce) a napište třeba:
    > Chci udělat rodokmen své rodiny.
 
-   nebo přímo `/rodokmen`.
-2. Claude zkontroluje programy, založí složku projektu (např. `~/Rodokmen`) a začne se ptát na rodinu.
+   nebo skill vyvolejte jako `$rodokmen`.
+2. Codex zkontroluje programy, založí složku projektu (např. `~/Rodokmen`) a začne se ptát na rodinu.
    Připravte si, co víte o rodičích, prarodičích a pradědečcích, a rodinné dokumenty (rodné a oddací listy, parte,
    fotky, kroniky) – stačí vyfotit mobilem.
-3. **Příště otevírejte Claude Code přímo ve složce projektu** (`cd ~/Rodokmen && claude`, nebo v aplikaci
-   vyberte tuto složku). Claude si přečte, kde jste skončili, a naváže.
+3. **Příště otevírejte Codex přímo ve složce projektu** (`cd ~/Rodokmen && codex`, nebo v aplikaci
+   vyberte tuto složku). Codex si z `AGENTS.md` a stavových souborů přečte, kde jste skončili, a naváže.
 
-Chcete nejdřív vidět, jak web vypadá? Řekněte: *„Ukaž mi ukázkový web.“* Claude založí ukázkový projekt
+Chcete nejdřív vidět, jak web vypadá? Řekněte: *„Ukaž mi ukázkový web.“* Codex založí ukázkový projekt
 s vymyšlenou rodinou a spustí náhled.
 
 ## Jak to probíhá
-| Fáze | Co děláte vy | Co dělá Claude |
+| Fáze | Co děláte vy | Co dělá Codex |
 |---|---|---|
 | 0. Příprava | potvrdíte instalaci programů | založí projekt |
 | 1. Rozhovor | vyprávíte, dodáte dokumenty, zeptáte se příbuzných | zapisuje, čte dokumenty, navrhuje otázky |
@@ -110,17 +99,17 @@ s vymyšlenou rodinou a spustí náhled.
 | 5. Zveřejnění | založíte účet na Netlify, schválíte obsah | nasadí web s přihlášením rodinnou otázkou |
 
 Matriky jsou online jen do určitého data: narození starší než 100 let, sňatky 75 a úmrtí 30 let.
-O mladší údaje se žádá na matričním úřadě. Claude vám řekne, kdy to je potřeba.
+O mladší údaje se žádá na matričním úřadě. Codex vám řekne, kdy to je potřeba.
 
 ## Co je v repozitáři
 ```
 skills/rodokmen/
-  SKILL.md           průvodce pro Clauda (fáze, pravidla)
+  SKILL.md           průvodce pro Codex (fáze, pravidla)
   reference/         podrobné návody: čtení matrik, portály archivů, formát dat, web, soukromí,
                      metodická příručka (playbook, anglicky)
   tools/             nástroje v Pythonu (ARON, výřezy, rámečky, mapa, kontrola dat, export do webu, vějíř)
   template/          šablona projektu: prázdná data, ukázková rodina, web (Astro)
-.claude-plugin/      instalace jako plugin
+AGENTS.md             pokyny pro Codex při správě repozitáře
 ```
 
 ## Co umí a co ne
@@ -128,21 +117,21 @@ skills/rodokmen/
   včetně dobrovolnických rejstříků), západní Čechy (SOA Plzeň, Porta fontium), střední Čechy (SOA Praha, eBadatelna –
   i urbáře a gruntovní knihy) a Prahu (AHMP a policejní přihlášky 1850–1914). Pro severní Čechy (SOA Litoměřice)
   stahuje snímky nástrojem, knihu ale najde přes prohlížeč. Pro Rakousko je postup přes Matriculu.
-- Ostatní archivy (Brno, Opava) Claude obsluhuje obecným postupem přes prohlížeč.
+- Ostatní archivy (Brno, Opava) Codex obsluhuje obecným postupem přes prohlížeč.
   Funguje to, ale je to pomalejší.
 - U úředníků, vojáků a lékařů hledá i v **dobových novinách** (ANNO, Kramerius) – kariéra, vyznamenání, parte.
 - Umí načíst **rodinný strom z MyHeritage** a dalších služeb (export GEDCOM, z MyHeritage i zálohu stromu z programu
   Family Tree Builder) a udělat z něj plán hledání.
 - Průběžně sbírá **zajímavosti** (svatby na poslední chvíli, rod sto let v jednom domě…) a s vámi napíše
   **Příběh vašeho rodu** – hlavní článek webu.
-- Claude čte staré písmo dobře, ale ne bezchybně. Proto ke každému zápisu ukládá výřez s vyznačeným místem,
+- Codex čte staré písmo dobře, ale ne bezchybně. Proto ke každému zápisu ukládá výřez s vyznačeným místem,
   aby se to dalo zkontrolovat, a nejistá místa označuje otazníkem.
-- Placené služby (MyHeritage, Ancestry) Claude hromadně neprochází – vede to k zablokování účtu.
+- Placené služby (MyHeritage, Ancestry) Codex hromadně neprochází – vede to k zablokování účtu.
 
 ## Soukromí
 Projekt obsahuje osobní údaje vaší rodiny. Zůstává na vašem počítači. Web je chráněný rodinnou otázkou
 a není indexovaný vyhledávači; bez nastavené otázky ho nástroj nenasadí. Je to lehká ochrana proti náhodným
-návštěvníkům, ne trezor: kdo zná odpověď, vidí všechno, co na web dáte. Claude má pokyn psát o žijících lidech
+návštěvníkům, ne trezor: kdo zná odpověď, vidí všechno, co na web dáte. Codex má pokyn psát o žijících lidech
 jen jméno a rok narození a před zveřejněním s vámi projít, co o nich web říká – kód to ale nevynucuje,
 rozhodnutí je na vás.
 Pokud projekt chcete zálohovat na GitHub, použijte **soukromý** repozitář.
@@ -161,15 +150,15 @@ Budu rád i za další zkušenosti. Napište mi na **sarsonj@gmail.com**, co fun
 Užitečné změny rád zapracuji do skillu, aby je měli k dispozici i ostatní. Další verze tak bude lepší pro každého,
 kdo hledá své předky.
 
-Nemusíte nic sepisovat sami. Claude si během práce zapisuje do `poznamky_pro_skill.md` (v projektu), co by šlo zlepšit:
+Nemusíte nic sepisovat sami. Codex si během práce zapisuje do `poznamky_pro_skill.md` (v projektu), co by šlo zlepšit:
 chyby, nové archivy, postupy a nápady, bez údajů o vaší rodině. Občas vám je nabídne k odeslání. Nic se neposílá samo:
 když budete chtít, zkopírujte je do e-mailu.
 
 ## Bezpečnost
-Skill je obyčejný text (návod pro Clauda) a pár skriptů v Pythonu. Všechno si můžete před instalací prohlédnout
+Skill je obyčejný text (návod pro Codex) a pár skriptů v Pythonu. Všechno si můžete před instalací prohlédnout
 tady v repozitáři.
-- **Žádný automaticky spouštěný kód.** Plugin nemá hooky ani MCP servery. Skripty spouští jen Claude, když je
-  při práci potřebuje, a Claude Code se vás na ně zeptá.
+- **Žádný automaticky spouštěný kód.** Skill nemá hooky ani MCP servery. Skripty spouští jen Codex, když je
+  při práci potřebuje, a podle nastaveného režimu si vyžádá schválení.
 - **Kam skripty sahají:** zapisují do složky projektu rodokmenu (stažené snímky, mezivýsledky, web).
   Výjimkou jsou dočasné soubory systému, npm při instalaci webu a přihlášení nástroje pro nasazení (Netlify,
   CapRover), pokud web zveřejňujete. Mimo projekt nic nemažou ani nepřepisují.
@@ -177,8 +166,8 @@ tady v repozitáři.
   eBadatelna, AHMP, Národní archiv, SOA Litoměřice, Matricula), noviny (ANNO, Kramerius), OpenStreetMap (mapa
   a souřadnice obcí) a při instalaci webu registr npm.
   Na Netlify jen tehdy, když web sami zveřejníte. Nikam jinam nic neposílají, ani vaše data, ani poznámky.
-- **Doporučení:** nechte v Claude Code zapnuté schvalování příkazů, aspoň dokud si nezvyknete, co Claude dělá.
-  Obecně instalujte skilly a pluginy jen od lidí, kterým věříte. Skill nikdo předem nekontroluje a Claude se
+- **Doporučení:** nechte v Codexu zapnuté schvalování příkazů, aspoň dokud si nezvyknete, co Codex dělá.
+  Obecně instalujte skilly jen od lidí, kterým věříte. Skill nikdo předem nekontroluje a Codex se
   jeho návodem řídí.
 
 ## Licence

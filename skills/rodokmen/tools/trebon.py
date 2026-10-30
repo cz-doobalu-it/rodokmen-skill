@@ -25,11 +25,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def magick():
     """Cesta k ImageMagicku; když chybí, skončí hned (před stahováním) srozumitelnou hláškou."""
-    m = (shutil.which("magick") or next(iter(sorted(glob.glob(r"C:\Program Files\ImageMagick*\magick.exe"))), None)
+    local = os.path.join(os.path.dirname(__file__), "imagemagick", "magick.exe")
+    m = ((local if os.path.isfile(local) else None) or shutil.which("magick") or next(iter(sorted(glob.glob(r"C:\Program Files\ImageMagick*\magick.exe"))), None)
          or (os.name != "nt" and shutil.which("convert")))   # ImageMagick 6 bez magick; na Windows je convert.exe jiný program
     if not m:
         sys.exit("Chybí ImageMagick (příkaz magick). Nainstaluj ho (macOS: brew install imagemagick, "
-                 "Windows: winget install ImageMagick.ImageMagick a restart Claude Code) a spusť nástroj znovu.")
+                 "Windows: winget install ImageMagick.ImageMagick a restart Codexu) a spusť nástroj znovu.")
     return m
 _cj = http.cookiejar.CookieJar()
 _op = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(_cj))

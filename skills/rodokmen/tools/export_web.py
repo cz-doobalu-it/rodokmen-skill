@@ -119,7 +119,8 @@ def placeholder(p):
 
 
 def magick_bin():   # ImageMagick 7 (magick), jinak 6 (convert) – ten ale ne na Windows, tam je convert.exe jiný program
-    return shutil.which("magick") or (os.name != "nt" and shutil.which("convert")) or None
+    local = os.path.join(TOOLS, "imagemagick", "magick.exe")
+    return (local if os.path.isfile(local) else None) or shutil.which("magick") or (os.name != "nt" and shutil.which("convert")) or None
 
 
 def size(path):

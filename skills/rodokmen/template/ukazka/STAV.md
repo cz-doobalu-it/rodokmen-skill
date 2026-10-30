@@ -1,11 +1,11 @@
 # Stav rodokmenu a pravidla práce
 
-Tento soubor je vstupní bod. Po každém restartu (nová konverzace, zkrácený kontext) ho Claude čte jako první,
+Tento soubor je vstupní bod. Po každém restartu (nová konverzace, zkrácený kontext) ho Codex čte jako první,
 pak konec `research_log.md` a sekci „Rozpracováno“.
 
 ## Pro koho
 - Výchozí osoba: (doplnit – jméno, rok a místo narození)
-- Kdo s Claudem pracuje a jak chce komunikovat: (doplnit)
+- Kdo s Codexem pracuje a jak chce komunikovat: (doplnit)
 
 ## Kde co je
 | Soubor | Obsah |

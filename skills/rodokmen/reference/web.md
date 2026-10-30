@@ -65,11 +65,11 @@ Další aktualizace = jen `npm run nasadit`. Vlastní doménu lze nastavit v adm
 
 **Pozor:** „Netlify Drop“ (přetažení složky v prohlížeči) neumí Edge Functions → web by byl bez přihlášení. Nepoužívat.
 
-## Náhled v Claude desktop
-Projekt má `.claude/launch.json` – náhled webu v Claude desktop spustí `npm --prefix web run dev` (port 4321). Data se
-předtím musí vyexportovat (`cd web && npm run data`). Když náhled nenaběhne (třeba na Windows, kde je `npm` jako `npm.cmd`),
-zkus v `launch.json` `"runtimeExecutable": "node"` a `"runtimeArgs": ["web/node_modules/astro/bin/astro.mjs", "dev", "--root", "web"]`
-(Astro 7 má spouštěč `astro.mjs`, ne `astro.js`). Server běží jen na tomto počítači – nepřidávej `--host`.
+## Náhled v Codexu
+Data nejdřív vyexportuj (`cd web && npm run data`) a náhled spusť příkazem `npm --prefix web run dev` (port 4321).
+Když příkaz na Windows nenaběhne, ověř dostupnost `npm.cmd` a spusť odpovídající skript z terminálu projektu.
+Codex pak může otevřít `http://localhost:4321` v dostupném prohlížeči nebo uživateli poslat snímek stránky.
+Server běží jen na tomto počítači – nepřidávej `--host`.
 
 ## Vlastní server (pokročilé)
 - Docker: `web/Dockerfile` (build Astro → nginx s `nginx.conf` z `nginx.sablona.conf`). Před buildem image vždy `npm run data`.

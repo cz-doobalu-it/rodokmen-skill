@@ -42,26 +42,29 @@ Najdeš v ní `tools/` (nástroje), `template/` (šablona projektu a webu) a `re
    --accept-source-agreements --accept-package-agreements` (balíky `Python.Python.3.12` + `--scope user`,
    `OpenJS.NodeJS.LTS`, `ImageMagick.ImageMagick`, `Git.Git`). Instalace systémových věcí nech uživatele potvrdit;
    interaktivní příkazy mu dej s předponou `!`, ať je spustí sám.
-   **Windows:** `python3` tam bývá jen nefunkční alias z Microsoft Store („Python nebyl nalezen“) – zkontroluj
+   **Windows:** nejdřív zkus Python přibalený k Codexu:
+   `%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe`.
+   Když existuje, používej jeho plnou cestu a přepínače `-I -X utf8`; není nutné instalovat další Python.
+   Jinak `python3` bývá jen nefunkční alias z Microsoft Store („Python nebyl nalezen“) – zkontroluj
    `python --version` (případně `py -3 --version`) a ve všech příkazech tohoto skillu místo `python3 -I` používej
    `python -I -X utf8` (funguje-li jen launcher, tak `py -3 -I -X utf8`). Zkontroluj **který** Python to je
    (`which -a python`) – může být přibalený k jinému programu (Inkscape, GIMP…) a nemít certifikáty. Ověř https:
    `python -I -c "import urllib.request; urllib.request.urlopen('https://aron.vychodoceskearchivy.cz')"`. Když spadne
    na `CERTIFICATE_VERIFY_FAILED`, nainstaluj běžný Python (winget výše) a volej ho plnou cestou
-   `"$LOCALAPPDATA/Programs/Python/Python312/python.exe"` (do PATH se dostane až po restartu Claude Code). `-I` ignoruje proměnnou `PYTHONUTF8`;
+   `"$LOCALAPPDATA/Programs/Python/Python312/python.exe"` (do PATH se dostane až po restartu Codexu). `-I` ignoruje proměnnou `PYTHONUTF8`;
    bez `-X utf8` je výstup do roury nebo souboru v kódování Windows (cp1250) – čeština se rozbije a některé nástroje
-   spadnou na znacích jako „→“. ImageMagick: `winget install --id ImageMagick.ImageMagick --source winget --accept-source-agreements --accept-package-agreements`; do PATH se dostane až po
-   restartu Claude Code (do té doby před příkazy `export PATH="/c/Program Files/ImageMagick-7…:$PATH"` s přesnou složkou
-   z `C:\Program Files`). **Nikdy `convert`** (to je systémový nástroj Windows), vždy `magick`. Skripty `.sh` spouštěj
+   spadnou na znacích jako „→“. Na Windows je portable ImageMagick přibalený v `tools/imagemagick/magick.exe` a nástroje
+   ho najdou automaticky; systémová instalace není potřeba. **Nikdy `convert`** (to je systémový nástroj Windows),
+   vždy lokální `magick.exe`. Skripty `.sh` spouštěj
    přes Git Bash (`bash tools/…`). Delší jednorázové skripty v Pythonu nepiš jako heredoc (`python - <<EOF`), v Git Bash
-   občas spadnou na „unexpected EOF“ – zapiš je do souboru v `pracovni/` a spusť. Tato pravidla zapiš hned po založení projektu do jeho `CLAUDE.md`, ať platí i příště
+   občas spadnou na „unexpected EOF“ – zapiš je do souboru v `pracovni/` a spusť. Tato pravidla zapiš hned po založení projektu do jeho `AGENTS.md`, ať platí i příště
    (a dej je do zadání i pomocníkům, viz `reference/matriky.md`).
 2. Zeptej se, kde má projekt být (navrhni `~/Rodokmen`), a založ ho:
-   `python3 -I SKILL_DIR/tools/novy_projekt.py <složka>`
+   `<PYTHON> -I -X utf8 SKILL_DIR/tools/novy_projekt.py <složka>`
    Chce-li uživatel nejdřív vidět, jak web vypadá, založ vedle ukázku: `… novy_projekt.py ~/Rodokmen-ukazka --ukazka`,
    pak `cd web && npm install && npm run nahled` a pošli mu odkaz http://localhost:4321.
-3. V projektu `git init` a první uložení (git = historie změn, kdyby se něco pokazilo). Doporuč pokračovat v Claude Code
-   **z této složky** (soubor `CLAUDE.md` v ní zajistí, že příště navážeš).
+3. V projektu `git init` a první uložení (git = historie změn, kdyby se něco pokazilo). Doporuč pokračovat v Codexu
+   **z této složky** (soubor `AGENTS.md` v ní zajistí, že příště navážeš).
 4. Vyplň v `data/STAV.md` sekci „Pro koho“ a v `data/web.json` název webu („Rodokmen Novákových“),
    jakmile znáš příjmení výchozí osoby (šablona je prázdná).
 
@@ -183,7 +186,7 @@ Podrobně `reference/pribehy.md`. Tohle je to, co rodina na webu čte nejradši,
 ## Fáze 4 – Web
 Podrobně `reference/web.md`. Ve zkratce:
 1. `cd web && npm install` (jednou), pak `npm run nahled` → http://localhost:4321 – ukaž uživateli. V cloudovém prostředí
-   (claude.ai) localhost neuvidí – pošli mu snímky stránek (headless prohlížeč) nebo nasaď náhled.
+   kde uživatel localhost neuvidí, mu pošli snímky stránek (headless prohlížeč) nebo nasaď náhled.
 2. Nastav `data/web.json`: název, úvod, kontakt a **přihlašovací otázku a odpověď** (web je jen pro rodinu).
 3. Po každé změně dat: `npm run data && npm run build` (nebo znovu `npm run nahled`). Hlášky `POZOR: nefunkční odkaz`
    oprav hned (adresa osoby se mění, když se jí doplní rok narození).

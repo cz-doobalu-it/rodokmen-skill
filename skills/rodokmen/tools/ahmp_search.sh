@@ -2,8 +2,9 @@
 # Matriky AHMP (Praha): ahmp_search.sh "dotaz" -> vypíše svazky Sbírky matrik (popis | farnost | XID, počet snímků).
 # Používá starý katalog katalog.ahmp.cz/pragapublica (nový digi.ahmp.cz má ochranu proti robotům – nepoužívat).
 D=$(mktemp -d); B=https://katalog.ahmp.cz; C=$D/cj
-# Python 3: na Windows je „python3“ často jen nefunkční alias z Microsoft Store → zkus python, py -3
-PY=python3; $PY -c "" 2>/dev/null || PY=python; $PY -c "" 2>/dev/null || PY="py -3"
+# Na Windows preferuj Python přibalený k Codexu; jinak zkus běžné příkazy.
+CODEX_PY="$HOME/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe"
+if [ -x "$CODEX_PY" ]; then PY="$CODEX_PY"; else PY=python3; $PY -c "" 2>/dev/null || PY=python; $PY -c "" 2>/dev/null || PY="py -3"; fi
 q=$($PY -I -c "import urllib.parse,sys;print(urllib.parse.quote_plus(sys.argv[1]))" "$1")
 curl -s -b $C -c $C -L "$B/pragapublica/searchlink?xid=7EF18906B65E11DF820F00166F1163D4&fcDb=&onlyDigi=&modeView=LIST&searchAsPhrase=&patternTxt=$q" -o $D/a.html
 f=$(grep -A6 'name="pageRows"' $D/a.html | grep -oE 'name="(_sourcePage|__fp)" value="[^"]*"' | head -2)

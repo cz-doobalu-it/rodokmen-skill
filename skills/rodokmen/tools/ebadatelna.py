@@ -268,7 +268,8 @@ def radek_matriky(mid, c):
 # ---------- snímky ----------
 
 def magick():
-    m = (shutil.which("magick") or next(iter(sorted(glob.glob(r"C:\Program Files\ImageMagick*\magick.exe"))), None)
+    local = os.path.join(os.path.dirname(__file__), "imagemagick", "magick.exe")
+    m = ((local if os.path.isfile(local) else None) or shutil.which("magick") or next(iter(sorted(glob.glob(r"C:\Program Files\ImageMagick*\magick.exe"))), None)
          or (os.name != "nt" and shutil.which("convert")))   # ImageMagick 6 bez magick; na Windows je convert.exe jiný program
     if not m:
         raise Chyba("chybí ImageMagick (magick) – je potřeba na náhled, výřez a zjištění rozměrů.")
